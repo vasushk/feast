@@ -1,0 +1,108 @@
+.form-control-dark {
+  border-color: var(--bs-gray);
+}
+.form-control-dark:focus {
+  border-color: #fff;
+  box-shadow: 0 0 0 0.25rem rgba(255, 255, 255, 0.25);
+}
+.loginHover:hover {
+  background-color: white;
+  color: black;
+}
+.sign-up-div {
+  height: 80vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.signlabel {
+  margin-top: 1.1rem;
+  margin-bottom: 1.5rem;
+  font-size: 1.2rem;
+  color: white;
+}
+.checkout-input {
+  background-color: transparent;
+  color: white;
+}
+.Sign-up-form {
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  border: 5px solid white;
+  border-radius: 30%;
+  height: 67vh;
+  width: 44vw;
+}
+.feature-icon {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 0.75rem;
+}
+
+.icon-square {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 0.75rem;
+}
+
+.text-shadow-1 {
+  text-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.25);
+}
+.text-shadow-2 {
+  text-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.25);
+}
+.text-shadow-3 {
+  text-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.25);
+}
+
+.card-cover {
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+
+.feature-icon-small {
+  width: 3rem;
+  height: 3rem;
+}
+
+.login {
+  color: white;
+}
+.Headingsign {
+  text-align: center;
+  color: white;
+  font-size: 4rem;
+}
+.text-small {
+  font-size: 85%;
+}
+body {
+  background: linear-gradient(
+    to right,
+    #d03f43,
+    /* Color on the left edge */ #d03f43 15%,
+    /* Begin fading to white */ #de7578 30%,
+    /* Start of white area */ #de7578 70%,
+    /* End of white area */ #d03f43 85%,
+    /* Begin fading back to red */ #d03f43 /* Color on the right edge */
+  );
+}
+.dropdown-toggle:not(:focus) {
+  outline: 0;
+}
+.bgg {
+  margin: 0;
+
+  background: linear-gradient(
+    to right,
+    #42b9bd,
+    /* Color on the left edge */ #42b9bd 15%,
+    /* Begin fading to white */ #b1e2e4 30%,
+    /* Start of white area */ #b1e2e4 70%,
+    /* End of white area */ #42b9bd 85%,
+    /* Begin fading back to red */ #42b9bd /* Color on the right edge */
+  );
+}

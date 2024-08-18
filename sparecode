@@ -1,0 +1,140 @@
+<!-- const express = require('express');
+const mongoose = require('mongoose');
+const session = require('express-session');
+const MongoStore = require('connect-mongo');
+const bcrypt = require('bcryptjs');
+
+// Initialize the Express application
+const app = express();
+
+// Middleware for parsing JSON and URL-encoded data
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+// Connect to MongoDB
+mongoose.connect('mongodb://localhost:27017/foodwebsite', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
+.then(() => console.log('MongoDB connected'))
+.catch(err => console.error('MongoDB connection error:', err));
+
+// Define the User schema and model
+const userSchema = new mongoose.Schema({
+  username: { type: String, required: true, unique: true },
+  password: { type: String, required: true },
+  items: [{
+    itemName: String,
+    addedAt: { type: Date, default: Date.now },
+    paymentMethod: String,
+    totalBill: Number
+  }]
+});
+
+userSchema.pre('save', async function(next) {
+  if (this.isModified('password')) {
+    this.password = await bcrypt.hash(this.password, 10);
+  }
+  next();
+});
+
+const User = mongoose.model('User', userSchema);
+
+// Configure session management
+app.use(session({
+  secret: 'your-secret-key',
+  resave: false,
+  saveUninitialized: true,
+  store: MongoStore.create({ mongoUrl: 'mongodb://localhost:27017/foodwebsite' })
+}));
+
+// Register endpoint
+app.post('/register', async (req, res) => {
+  try {
+    const { username, password } = req.body;
+    const user = new User({ username, password });
+    await user.save();
+    res.status(201).send('User registered successfully');
+  } catch (err) {
+    res.status(400).send('Error registering user');
+  }
+});
+
+// Login endpoint (session-based)
+app.post('/login', async (req, res) => {
+  try {
+    const { username, password } = req.body;
+    const user = await User.findOne({ username });
+    if (!user || !(await bcrypt.compare(password, user.password))) {
+      return res.status(401).send('Invalid credentials');
+    }
+    req.session.userId = user._id;
+    res.send('Logged in successfully');
+  } catch (err) {
+    res.status(500).send('Error logging in');
+  }
+});
+
+// Check login status (session-based)
+app.get('/check-login', (req, res) => {
+  if (req.session.userId) {
+    res.send('User is logged in');
+  } else {
+    res.send('User is not logged in');
+  }
+});
+
+// Logout endpoint (session-based)
+app.post('/logout', (req, res) => {
+  req.session.destroy(err => {
+    if (err) {
+      return res.status(500).send('Failed to log out');
+    }
+    res.send('Logged out successfully');
+  });
+});
+
+// Add item to user's collection
+app.post('/add-item', async (req, res) => {
+  if (!req.session.userId) {
+    return res.status(401).send('User not logged in');
+  }
+
+  try {
+    const { itemName, paymentMethod, totalBill,firstName,lastName,zip,adress } = req.body;
+    const user = await User.findById(req.session.userId);
+    
+    if (!user) {
+      return res.status(404).send('User not found');
+    }
+
+    user.items.push({ itemName, paymentMethod, totalBill,firstName,lastName,zip,adress });
+    await user.save();
+    res.send('Item added successfully');
+  } catch (err) {
+    res.status(500).send('Error adding item');
+  }
+});
+
+// Get items for the logged-in user
+app.get('/items', async (req, res) => {
+  if (!req.session.userId) {
+    return res.status(401).send('User not logged in');
+  }
+
+  try {
+    const user = await User.findById(req.session.userId);
+    
+    if (!user) {
+      return res.status(404).send('User not found');
+    }
+
+    res.json(user.items);
+  } catch (err) {
+    res.status(500).send('Error fetching items');
+  }
+});
+
+// Start the server
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`)); -->
