@@ -187,6 +187,7 @@ app.get("/thanks", (req, res) => {
   return res.render("thanks");
 });
 
-app.listen(3000, () => {
-  console.log("Server running on port 3000");
-});
+const port=process.env.PORT
+app.listen(port,()=>{
+  console.log("succes" + port)
+})
